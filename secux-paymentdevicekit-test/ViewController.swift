@@ -153,6 +153,7 @@ class ViewController: BaseViewController {
             return
         }
         
+        
         if !paymentPeripheral.isOldVersion{
             
             let (ret, ivkey) = self.peripheralManager.doGetIVKey(devID: paymentPeripheral.uniqueID)
@@ -209,7 +210,6 @@ class ViewController: BaseViewController {
                 print("\(ret) \(ivkey)")
                 if ret == .OprationSuccess{
              
-//                    let payData = SecuXUtility.getEncryptMobilePaymentCommand(terminalId: "00006baf", amount: "2", ivKey: ivkey, cryptKey: "PA123456789012345678901234567891", currency:"SPC")
                     
                     let payData = SecuXUtility.getEncryptMobilePaymentCommand(terminalId: self.terminalID, amount: "1", ivKey: ivkey, cryptKey: self.paymentKey, currency:"SPC")
 
@@ -313,9 +313,6 @@ extension ViewController: BLEDevControllerDelegate{
         for i in 0..<self.deviceList.count{
             let device = deviceList[i]
             if device.isEqual(dev){
-                //DispatchQueue.main.async {
-                //    self.theTableView.reloadRows(at: [IndexPath(row: i, section: 0)], with: .fade)
-                //}
                 return
             }
         }

@@ -1,10 +1,10 @@
 PODS:
   - JGProgressHUD (2.1)
-  - secux-paymentdevicekit (2.0.9)
+  - secux-paymentdevicekit (2.0.15)
 
 DEPENDENCIES:
   - JGProgressHUD
-  - secux-paymentdevicekit
+  - secux-paymentdevicekit (= 2.0.15)
 
 SPEC REPOS:
   trunk:
@@ -13,8 +13,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
-  secux-paymentdevicekit: 3b10495bee3f2072ee91a4ad24e2d1090c5d3b4b
+  secux-paymentdevicekit: de63827f3240482e7f5566dd765f17577571826a
 
-PODFILE CHECKSUM: f43472d461cce08a0580ab9a012f8a18c9918ded
+PODFILE CHECKSUM: e29c329c7fad2415ed9ab52e65b698ab77753699
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.11.3

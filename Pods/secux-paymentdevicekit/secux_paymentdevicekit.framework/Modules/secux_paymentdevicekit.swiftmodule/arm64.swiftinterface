@@ -1,10 +1,9 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
-// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name secux_paymentdevicekit
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name secux_paymentdevicekit
 import CommonCrypto
 import CoreBluetooth
 import Foundation
-import Network
 import Swift
 @_exported import secux_paymentdevicekit
 public enum SecuX_Command_Type : Swift.String {
@@ -110,15 +109,7 @@ public enum SecuXPaymentPeripheralManagerError : Swift.Int {
 }
 @objc open class SecuXPaymentPeripheralManager : ObjectiveC.NSObject {
   public init(scanTimeout: Swift.Int, connTimeout: Swift.Int, checkRSSI: Swift.Int)
-  public func activateDevice(devID: Swift.String, terminalID: Swift.String, paymentKey: Swift.String, coinTokenArr: [(coin: Swift.String, token: Swift.String)]? = nil, defaultLang: Swift.UInt8 = 0) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
   public func requestDisconnect()
-  public func resetDevice(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func resetDeviceV1(devID: Swift.String, terminalID: Swift.String, serverKey: Swift.String, paymentKey: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func eraseDeviceCoinToken(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func addDeviceCoinToken(devID: Swift.String, coinTokenInfo: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func appendDeviceCoinToken(devID: Swift.String, coin: Swift.String, token: Swift.String, icon: Foundation.Data?, type: Swift.Int, eraseAllBeforeAppend: Swift.Bool) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func addDeviceCoinTokenArray(devID: Swift.String, coinTokenDict: [Swift.String : Swift.String]) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func cleanDevicePaymentRecords(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
   public func getRefundInfo(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String, Swift.String?)
   public func getRefundInfo(devID: Swift.String, nonce: [Swift.UInt8]) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String, Swift.String?)
   public func doGetIVKey(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
@@ -126,14 +117,6 @@ public enum SecuXPaymentPeripheralManagerError : Swift.Int {
   public func isOldFWVersion() -> Swift.Bool
   public func doPaymentVerification(encPaymentData: Foundation.Data) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
   public func doPaymentVerification(encPaymentData: Foundation.Data, machineControlParams: [Swift.String : Any]) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func enableRefund(devID: Swift.String, enable: Swift.Bool) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func enableRefill(devID: Swift.String, enable: Swift.Bool) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func setLanguage(devID: Swift.String, langCode: Swift.UInt8) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func reboot(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func enterUpgradeFWMode(devID: Swift.String) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func setLogo(devID: Swift.String, logo: Foundation.Data?) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func setServerIPAndPort(devID: Swift.String, no: Swift.Int, ip: Swift.String, port: Swift.Int32) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String)
-  public func readRegData(devID: Swift.String, addrH: Swift.UInt8, addrL: Swift.UInt8, len: Swift.UInt8) -> (secux_paymentdevicekit.SecuXPaymentPeripheralManagerError, Swift.String, Foundation.Data?)
   @objc deinit
   @objc override dynamic public init()
 }
@@ -243,10 +226,10 @@ extension RNCryptor {
   }
 }
 @objc @_inheritsConvenienceInitializers open class SecuXPaymentPacketHandler : ObjectiveC.NSObject {
-  public static let PACKET_PAYLOAD_SIZE: Swift.Int
   public static func generateCommandPacket(cmd: Foundation.Data) -> Foundation.Data
   public static func getPacketCommandData(packetData: Foundation.Data) -> Foundation.Data
   public static func isLastPacket(packetData: Foundation.Data) -> Swift.Bool
+  public static func testCmdPacket() -> Swift.Bool
   @objc deinit
   @objc override dynamic public init()
 }
